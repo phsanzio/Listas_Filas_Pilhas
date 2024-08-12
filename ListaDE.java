@@ -42,32 +42,36 @@ public class ListaDE {
         }
     }
 
-    // public void inserirOrdenado(Celula c){
-    //     if(vazia()){
-    //         primeiro = c;
-    //     } else{
-    //         Celula aux = primeiro;
-    //         Celula aux2 = primeiro.prox;
-    //         if(aux2 == null){
-    //             if(aux.valor > c.valor){
-    //                 inserirNoInicio(c);
-    //             } else{
-    //                 inserirAoFinal(c);
-    //             }
-    //         } else{
-    //             while (aux2.prox != null && aux2.valor < c.valor) {
-    //                 aux = aux2;
-    //                 aux2 = aux2.prox;
-    //             }
-    //             if(aux2.prox == null && aux2.valor < c.valor){
-    //                 inserirAoFinal(c);
-    //             } else {
-    //                 aux.prox = c;
-    //                 c.prox = aux2;
-    //             }
-    //         }
-    //     }
-    // }
+    public void inserirOrdenado(Celula c){
+        if(vazia()){
+            primeiro = c;
+        } else{
+            Celula aux = primeiro;
+            Celula aux2 = primeiro.prox;
+            if (aux.valor > c.valor) {
+                inserirNoInicio(c);
+            } else if (aux2 == null){
+                if(aux.valor > c.valor){
+                    inserirNoInicio(c);
+                } else{
+                    inserirAoFinal(c);
+                }
+            } else{
+                while (aux2.prox != null && aux2.valor < c.valor) {
+                    aux = aux2;
+                    aux2 = aux2.prox;
+                }
+                if(aux2.prox == null && aux2.valor < c.valor){
+                    inserirAoFinal(c);
+                } else {
+                    aux.prox = c;
+                    c.ant = aux;
+                    c.prox = aux2;
+                    aux2.ant = c;
+                }
+            }
+        }
+    }
 
     Celula pesquisar(int v){
         if(vazia()){
